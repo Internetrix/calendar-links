@@ -22,7 +22,7 @@ class Ics implements Generator
 
         if ($link->allDay) {
             $dateTimeFormat = 'Ymd';
-            $url[] = 'DTSTART:'.$link->from->format($dateTimeFormat);
+            $url[] = 'DTSTART:VALUE=DATE:'.$link->from->format($dateTimeFormat);
             $url[] = 'DURATION:P1D';
         } else {
             $dateTimeFormat = "e:Ymd\THis";
