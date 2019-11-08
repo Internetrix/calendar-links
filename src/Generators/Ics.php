@@ -25,7 +25,7 @@ class Ics implements Generator
         $vcalendar->add($vevent);
 
         if ($link->allDay) {
-            $vevent->add('DTSTART', 'VALUE=DATE:'.$link->from->format("Ymd"));
+            $vevent->add('DTSTART;VALUE=DATE', $link->from->format("Ymd"));
             $vevent->add('DURATION:P1D');
             $timeZones[$link->from->getTimezone()->getName()] = $link->from->getTimezone();
         } else {
