@@ -1,11 +1,11 @@
 {
-    "name": "spatie/calendar-links",
+    "name": "internetrix/calendar-links",
     "description": "Generate add to calendar links for Google, iCal and other calendar systems",
     "keywords": [
         "spatie",
         "calendar-links"
     ],
-    "homepage": "https://github.com/spatie/calendar-links",
+    "homepage": "https://github.com/internetrix/calendar-links",
     "license": "MIT",
     "authors": [
         {
