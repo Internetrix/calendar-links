@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^5.6",
-        "sabre/vobject": "^4.2"
+        "sabre/vobject": "4.2"
     },
     "require-dev": {
         "spatie/phpunit-snapshot-assertions": "^1.0"
