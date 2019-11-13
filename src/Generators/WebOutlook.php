@@ -11,10 +11,13 @@ use Spatie\CalendarLinks\Generator;
  */
 class WebOutlook implements Generator
 {
+
+    protected $url = 'https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addevent';
+
     /** {@inheritdoc} */
     public function generate(Link $link)
     {
-        $url = 'https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addevent';
+        $url = $this->url;
 
         $dateTimeFormat = $link->allDay ? 'Ymd' : "Ymd\THis";
 
