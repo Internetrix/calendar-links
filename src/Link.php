@@ -8,6 +8,7 @@ use Spatie\CalendarLinks\Generators\Yahoo;
 use Spatie\CalendarLinks\Generators\Google;
 use Spatie\CalendarLinks\Generators\WebOutlook;
 use Spatie\CalendarLinks\Exceptions\InvalidLink;
+use function var_dump;
 
 /**
  * @property-read string $title
@@ -37,7 +38,7 @@ class Link
     /** @var string */
     protected $address;
 
-    public function __construct(string $title, DateTime $from, DateTime $to, bool $allDay = false)
+    public function __construct($title, $from, $to, $allDay = false)
     {
         $this->title = $title;
         $this->allDay = $allDay;
@@ -59,7 +60,7 @@ class Link
      * @return static
      * @throws InvalidLink
      */
-    public static function create(string $title, DateTime $from, DateTime $to, bool $allDay = false)
+    public static function create($title, $from, $to, $allDay = false)
     {
         return new static($title, $from, $to, $allDay);
     }
@@ -72,10 +73,12 @@ class Link
      * @return Link
      * @throws InvalidLink
      */
-    public static function createAllDay(string $title, DateTime $fromDate, int $numberOfDays = 1): self
+    public static function createAllDay($title, DateTime $fromDate, $numberOfDays = 1)
     {
-        $from = (clone $fromDate)->modify('midnight');
-        $to = (clone $from)->modify("+$numberOfDays days");
+        $fromTemp  = clone $fromDate;
+        $toTemp = (clone $from);
+        $from = $fromTemp->modify('midnight');
+        $to = $toTemp->modify("+$numberOfDays days");
 
         return new self($title, $from, $to, true);
     }
@@ -85,7 +88,7 @@ class Link
      *
      * @return $this
      */
-    public function description(string $description)
+    public function description($description)
     {
         $this->description = $description;
 
@@ -97,29 +100,29 @@ class Link
      *
      * @return $this
      */
-    public function address(string $address)
+    public function address($address)
     {
         $this->address = $address;
 
         return $this;
     }
 
-    public function google(): string
+    public function google()
     {
         return (new Google())->generate($this);
     }
 
-    public function ics(): string
+    public function ics()
     {
         return (new Ics())->generate($this);
     }
 
-    public function yahoo(): string
+    public function yahoo()
     {
         return (new Yahoo())->generate($this);
     }
 
-    public function webOutlook(): string
+    public function webOutlook()
     {
         return (new WebOutlook())->generate($this);
     }
